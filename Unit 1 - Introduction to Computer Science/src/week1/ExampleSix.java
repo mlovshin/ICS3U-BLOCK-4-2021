@@ -24,6 +24,18 @@ public class ExampleSix {
    
        System.out.println(13 % 3); // 13/3 what is the remainder
        y = y % 2; // equvilent to y %= 2;
+
+       int s = 5;
+       s++; 
+       ++s; 
+       s--; 
+       --s;
+
+       int g= 3;
+       int f = 3;
+
+       int test1 = 2 * g++  // test1 = 6 and g = 4 (did 2 * 3) 
+       int test2 = 2 * ++f 
    
      }
 }
