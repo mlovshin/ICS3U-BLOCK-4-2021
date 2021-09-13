@@ -1,0 +1,29 @@
+package week2;
+
+/** 
+* Type Casting 
+ */
+public class ExampleEight {
+    Run/ Debug
+    public static void main(String[] args) {
+        final int NUM_MARKS = 5;
+
+        int markOne = 78, makrTwo = 87, markThree = 64, makrFour = 95, markFive = 84;
+
+        double average = (double)(markOne + markTwo + markThree + markFour + markFive) / NUM_MARKS;
+        // If you want an equation a double(with a decimal) you should put double in front of the equation
+
+        System.out.println("The average is: " + average); 
+
+        double y = 3.7;
+        int x = (int) y; 
+
+        double z = (double)7; // explicit cast
+        // int -> double // widening conversion
+        //double -> int // narrowing conversion
+
+        boolean p = (int)true; // cannot cast from boolean to int
+
+
+
+    }
