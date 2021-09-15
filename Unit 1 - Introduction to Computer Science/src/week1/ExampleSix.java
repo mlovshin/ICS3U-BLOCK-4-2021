@@ -34,8 +34,8 @@ public class ExampleSix {
        int g= 3;
        int f = 3;
 
-       int test1 = 2 * g++  // test1 = 6 and g = 4 (did 2 * 3) 
-       int test2 = 2 * ++f 
+       int test1 = 2 * g++;  // test1 = 6 and g = 4 (did 2 * 3) 
+       int test2 = 2 * ++f; 
    
      }
 }
