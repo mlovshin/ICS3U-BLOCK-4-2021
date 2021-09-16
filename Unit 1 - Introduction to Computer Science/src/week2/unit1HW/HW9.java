@@ -3,7 +3,7 @@ package week2.unit1HW;
 public class HW9 {
     public static void main(String[] args) {
 
-        Let a;
+        int a;
         Let b;
         Let c;
         Let x;
