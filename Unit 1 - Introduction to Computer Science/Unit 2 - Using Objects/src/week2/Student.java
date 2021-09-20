@@ -79,4 +79,5 @@ public class Student {
     average = (double) totalMarks / numMarks;
   }
 
-}
+
+public 
