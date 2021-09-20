@@ -1,0 +1,4 @@
+public String left2(String str) {
+  String rest = str.substring(2); // char 2 onwards (llo)
+  String first2 = str.substring(0,2); // char 0 to 2 (Hel)
+  return rest + first2; 
