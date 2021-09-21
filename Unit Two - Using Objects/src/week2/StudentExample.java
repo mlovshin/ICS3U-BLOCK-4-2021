@@ -11,12 +11,21 @@ public class StudentExample {
        // java throws a NullPointerException, fred doesn't equal Student anymore but muriel still has the value because she has an arrow to the bubble
         //non-static methods belongs to the OBJECT(Student) not the CLASS(public static void main)
         // attributes define the state
+        // overloading is when you have
 
         max.addTest(87);
         max.addTest(94);
         max.addTest(98);
         max.addTest(67);
         max.displayAverage();
+
+       
+        System.out.println(max.getName() + "has an average of " + max.getAverage());
+
+
+        Student david = new Student("David", "565858");
+
+
 
     }
     

@@ -36,7 +36,10 @@ public class Student {
     this.average = 0;
   }
 
-  /**
+  public Student(String string, String string2) {
+}
+
+/**
    * displayName, displayStudentNumber, increaseGrade, displayGrade The methods
    * (actions) in a class define behaviour for the class
    */
@@ -78,5 +81,13 @@ public class Student {
   private void calculateAverage() {
     average = (double) totalMarks / numMarks;
   }
+
+  public String getName() {
+    return null;
+  }
+
+public String getAverage() {
+    return null;
+}
 
 }
