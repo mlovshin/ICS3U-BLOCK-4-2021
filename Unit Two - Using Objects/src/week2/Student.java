@@ -82,6 +82,7 @@ public class Student {
     average = (double) totalMarks / numMarks;
   }
 
+<<<<<<< HEAD:Unit Two - Using Objects/src/week2/Student.java
   public String getName() {
     return null;
   }
@@ -91,3 +92,7 @@ public String getAverage() {
 }
 
 }
+=======
+
+public 
+>>>>>>> ef565caf17061d938591697b44dd1cf569d309cc:Unit 1 - Introduction to Computer Science/Unit 2 - Using Objects/src/week2/Student.java
