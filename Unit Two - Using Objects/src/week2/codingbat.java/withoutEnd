@@ -1,0 +1,2 @@
+public String withoutEnd(String str) {
+  return str.substring(1, (str.length() - 1)); // start from value 1 and go all the way to value whole word - 1(the second last number)
