@@ -11,8 +11,8 @@ public class BayviewGlenPools {
 
         final int linerCost = 2;
 
-        double vol = getVolume(length, width, shallowLength, transition, shallowHeight, deepHeight);
-        double surfaceArea = getSurfaceArea(length, width, shallowLength, transition, shallowHeight, deepHeight);
+        double getVolume = getVolume(length, width, shallowLength, transition, shallowHeight, deepHeight);
+        double getSurfaceArea = getSurfaceArea(length, width, shallowLength, transition, shallowHeight, deepHeight);
 
         
     }
@@ -43,7 +43,8 @@ private static double getSurfaceArea(int length, int width, int shallowLength, i
         double saShallow = 2 * ((width * shallowLength)+ (shallowHeight * shallowLength) + (shallowHeight * width));
         double deepLength = length - shallowLength - transitionBase;
         double saDeep = 2 * ((width * deepLength) + (deepHeight * deepLength) + (deepHeight * width));
-        double saTransition = ((transitionBase + (deepHeight - shallowHeight) / 2);
+        double saTransition = ((transitionBase) + (deepHeight - shallowHeight) / 2);
+        return saShallow + saDeep + saTransition;
 
         // 510
 
