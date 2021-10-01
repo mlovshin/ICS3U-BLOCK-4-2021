@@ -57,6 +57,26 @@ public class ifStatementsExamples {
         if (x % 2 == 1) {
             System.out.println( x + " is odd."); // only to outputs, true or false
 
+            // codingbat seeColor practice
+
+
+            if (str.indexOf("red") ==0) {       // if index of red starts at 0( 0, 1, 2), then return red 
+                return "red";                   
+              }else if (str.indexOf("blue") ==0 ){      //if index of blue starts at 0(0, 1, 2, 3), then return blue
+                return "blue";
+              }else{
+                return "";
+              }
+
+              // codingbat extraFront
+
+              if (str.length() < 2){
+                return str + str + str;
+              }else {
+                String newStr = str.substring(0,2);
+                return newStr + newStr + newStr; 
+              }
+
     }
     
 }
