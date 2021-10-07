@@ -16,7 +16,7 @@ public class ifStatementsExamples {
              * !=   (not equal)
              * 
              * || or (x > 7) || (y > 7)         either are TRUE to be TRUE
-             *  && AND (x > 7) || (y > 7)       either 
+             *  && AND (x > 7) && (y > 7)       either 
              */
         }
 
@@ -80,3 +80,11 @@ public class ifStatementsExamples {
     }
     
 }
+{
+    if(candy < 5 || tea < 5)
+      return 0;
+    if ((tea >= 2 * candy) || (candy = 2 * tea))
+      return 2;
+    else
+      return 1;
+  }
