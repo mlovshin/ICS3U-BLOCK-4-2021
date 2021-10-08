@@ -3,7 +3,7 @@ package week5;
 import java.util.Scanner;
 
 public class CrossCountry {
-    public static void main(String[] args) {
+    public static void main(String[] args) {        //This method declares the scanner and creates the runners 
         Scanner in = new Scanner(System.in);
 
         processRunner(in);
@@ -12,7 +12,7 @@ public class CrossCountry {
         in.close();
     }
 
-    private static void processRunner(Scanner in) {     //To print and display the First Name, Last Name, mile One time, mile Two time and finish time
+    private static void processRunner(Scanner in) {     //This method prints and display the First Name, Last Name, mile One time, mile Two time and finish time
         String firstName, lastName;
         String mileOne, mileTwo, finish;
         String splitTwo, splitThree;
@@ -43,7 +43,7 @@ public class CrossCountry {
 
     }
 
-    private static String substractTime(String endTime, String startTime) {     
+    private static String substractTime(String endTime, String startTime) {     //This method converts into seconds(double) and then finds the difference of the start and end time
         double endTimeInSeconds = convertToSeconds(endTime);
         double startTimeInSeconds = convertToSeconds(startTime);
 
@@ -62,22 +62,22 @@ public class CrossCountry {
         return String.format("%d:%06.3f", minutes, seconds); 
     }
 
-    private static double getSeconds(double timeInSeconds) {       //Converts to get the seconds and mods by 60 to get the milliseconds 
+    private static double getSeconds(double timeInSeconds) {       //This method converts to get the seconds that were leftover after converted to minutes(mods by 60) 
         return timeInSeconds % 60;  
       
         // 334.221 => 34.221
     
     }
 
-    private static int getMinutes(double timeInSeconds) {       // Converting the time in seconds to minutes by multiplying by 60
+    private static int getMinutes(double timeInSeconds) {       // This method converts the time in seconds to minutes by multiplying by 60
         return (int)(timeInSeconds/60);
     
     }
 
-    private static double convertToSeconds(String time) {
+    private static double convertToSeconds(String time) {       // This method finds the index values of the minutes, converts to doubles and multiplies by 60 to find minutes
         String oneSeconds = time.substring(0, time.indexOf(":"));   // in minutes
         String twoSeconds = time.substring(time.indexOf(":" + 1));  // in seconds
-        Double time1 = Double.parseDouble(oneSeconds)*60;   // convert to seconds  and times by 60
+        Double time1 = Double.parseDouble(oneSeconds)*60;   
         Double time2 = Double.parseDouble(twoSeconds);   // to take the rest of twoSeconds and keep it in seconds
 
         Double finalTime = time1 + time2;   // add the oneSeconds(the minutes converted) to the twoSeconds to find the total time;
@@ -90,11 +90,7 @@ public class CrossCountry {
     
 }
 
-/**
- * @param endTime
- * @param startTime
- * @return 
- */
+
 
 
 
