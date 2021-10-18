@@ -60,6 +60,12 @@ public class CrossCountry {
 
 
         return String.format("%d:%06.3f", minutes, seconds); 
+
+
+        int minutes =  getMinutes(timeInSeconds);
+        double seconds = getSeconds(timeInSeconds);
+
+        return String.format((%d:%06.%3f).minutes.seconds);
     }
 
     private static double getSeconds(double timeInSeconds) {       //This method converts to get the seconds that were leftover after converted to minutes(mods by 60) 
@@ -72,6 +78,8 @@ public class CrossCountry {
     private static int getMinutes(double timeInSeconds) {       // This method converts the time in seconds to minutes by multiplying by 60
         return (int)(timeInSeconds/60);
     
+
+        return (int)(timeInSeconds/60);
     }
 
     private static double convertToSeconds(String time) {       // This method finds the index values of the minutes, converts to doubles and multiplies by 60 to find minutes
@@ -90,7 +98,16 @@ public class CrossCountry {
     
 }
 
+5:45.45
 
+
+String oneSecond = time.substring(0, time.indexOf(":"));
+String twoSecond = time.substring(time.indexOf(":") + 1);
+Double time1 = Double.parseDouble(oneSecond)*60;
+Double time2 = Double.parseDouble(twoSecond);
+
+Double final time = time1 + time2;
+return final time
 
 
 

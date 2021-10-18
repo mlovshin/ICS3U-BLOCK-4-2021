@@ -58,3 +58,33 @@ public class WhileLoops {
     }
     
 }
+    String newWord= ""; 
+for ( i < str.length() - 1; i >= 0; i--)
+    String search = str.substring(i, i + 1);
+        return newWord + search 
+
+
+
+
+
+    for ( i == 0; i < 4; i++)
+        for (i == 0; i < 3; i++)
+        System.out.println('*')
+
+
+      String oneSecond = (0, str.indexOf(":"));
+      String twoSecond = (str.indexOf(":") + 1);
+      Double time1 = double.parseDouble(oneSecond)*60;
+      Double time2 = double.parseDouble(twoSecond);
+
+      String finalTime = time1 + time2;
+
+      return finalTime
+
+    public static void main(String n)
+      String word = "Hello"
+      int length = str.length();
+
+      for (i == 0; i < length; i++)
+        if (n.indexOf() == word.indexOf())
+        return 
