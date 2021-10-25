@@ -15,78 +15,44 @@ public class CrazyEights {
     private static final String JACK = "J";
     private static final String QUEEN = "Q";
     private static final String KING = "K";
-    private static String playerHand = "";
-    private static String comp1 = "";
-    private static String comp2 = "";
-    private static String player1 = playerHand;
-    private static String compPlayer1 = comp1;
-    private static String compPlayer2 = comp2;
+    
 
 
     
 
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-		getSuit();
+        int playerPoints = 0, c1Points = 0, c2Points = 0;
+        getSuit();
         getFace();
         getCard();
-        
-        playerHand = discard(in, playerHand);
-        
-    }
+     
+           while (!gameOver(playerPoints, c1Points, c2Points)) {
+              String result = playRound();
+              int firstDash = result.indexOf("-");
+              int secondDash = result.lastIndexOf("-");
+              // int secondDash = result.indexOf("-", firstDash + 1);
+              playerPoints += Integer.parseInt(result.substring(0, firstDash));
+              c1Points += Integer.parseInt(result.substring(firstDash + 1, secondDash));
+              c2Points += Integer.parseInt(result.substring(secondDash + 1));
+     
+              System.out.println(playerPoints + " " + c1Points + " " + c2Points);
+           }
+        }
+    
+    private static String playRound(String playerHand, String comp1, String comp2, String rank, String suits) {
+        String topCard;
 
-    private static String order(String player1, String compPlayer1, String compPlayer2) {
-        //how do I create an order of people, how do I connect this method to the "nextPlayer" method
-    }
-
-    private static String distributeCard(int playerHand, int comp1, int comp2) {
-    playerHand += (getCard() + getCard() + getCard() + getCard() + getCard());
-    comp1 += (getCard() + getCard() + getCard() + getCard() + getCard());
-    comp2 += (getCard() + getCard() + getCard() + getCard() + getCard());
-
-    System.out.println("Player hand is: " + playerHand);
-    }
-
-    private static String playCrazyEight(String playerHand, String comp1, String comp2) {
-        String topCard = "";
-        Object rank;
-        Object suits;
-        String nextPlayer = "";
-        if (playerHand.equals(8)){
+        if (playerHand.equals(suits)){
             return topCard += playerHand;
-            System.out.println("What suit does the next person have to play?: ");
-        if (nextPlayer) //code how to ask the next player to play that suit
-        else if (comp1.equals(8))
-            return topCard+= comp1;
-            System.out.println("What suit does the next person have to play?: ");
-        else if (comp2.equals(8))
-            return topCard+= comp2;
-            System.out.println("What suit does the next person have to play?: ");
 
-        } else if (suits.equals(playerHand)){
+        } else if (playerHand.equals(rank)){
             return topCard+= playerHand;
-        else if (suits.equals(comp1))
-            return topCard+= comp1;
-        else if (suits.equals(comp2))
-            return topCard += comp2;
-        else // what happens if not
-        
-        }else if(rank.equals(playerHand)) {
-                return topCard += playerHand;
-        else if(rank.equals(comp1))
-                return topCard += comp1;
-        else if(rank.equals(comp2))
-                return topCard += comp2;
-        else // what happens if not
         
     }
 
-
-    private static int discard(Scanner in, int playerhand2) {
-        return 0;
-    }
-
-    private static void getCard() {
+    private static String distributeCard() {
+    String playerHand = "" + getCard() + "" + getCard() + "" + getCard() + "" + getCard() + "" + getCard();
+        return playerHand;
     }
 
     private static String getFace() {
@@ -116,8 +82,16 @@ public class CrazyEights {
         return CLUBS;
                     
         }
+   
+        private static String getCard() {
+        String card = getFace() + getSuit();
+        card = getFace() + getSuit();
+                return card;
+        
+        }
     
-    private static String getCardsToDiscard(Scanner in, int numCardsToReplace, String playerHand2) {
+    
+    private static String getCardsToPlay(Scanner in, int numCardsToReplace, String playerHand) {
             final String VALID_CARDS = "AS2S3S4S5S6S7S8S9S10SJSQSKSAC2C3C4C5C6C7C8C9C10CJCQCKCAD2D3D4D5D6D7D8D9D10DJDQDKDAH2H3H4H5H6H7H8H9H10HJHQHKH";
             boolean validInput = false;
             String cards = "";
@@ -143,12 +117,44 @@ public class CrazyEights {
             return cards;
     }
 
-        private static String getCard(String string) {
-        String card = getFace() + getSuit();
-        card = getFace() + getSuit();
-            return card;
-    
+  
+    private static String playRound() {
+        System.out.println("Let's start game!");
+        String playerHand = "";
+        String c1Hand = "";
+        String c2Hand = "";
+  
+        String topCard = "";
+  
+        String temp = processPlayer(playerHand, topCard);
+        playerHand = temp.substring(0, temp.indexOf("-"));
+        topCard = temp.substring(temp.indexOf("-") + 1);
+  
+        temp = processComputer(c1Hand, topCard, playerHand, c2Hand);
+        c1Hand = temp.substring(0, temp.indexOf("-"));
+        topCard = temp.substring(temp.indexOf("-") + 1);
+  
+        temp = processComputer(c2Hand, topCard, playerHand, c1Hand);
+        c2Hand = temp.substring(0, temp.indexOf("-"));
+        topCard = temp.substring(temp.indexOf("-") + 1);
+  
+        return "17-0-8";
+     }
+
+     private static String processComputer(String c1Hand, String topCard, String playerHand, String c2Hand) {
+        return null;
     }
+
+    private static String processPlayer(String playerHand, String topCard) {
+        while (!canPlay(hand, getSuit(topCard), getRank(topCard), getCard(topCard)), playerHand < 5)
+            if(playerHand < 5)
+                
+     }
+  
+     private static boolean gameOver(int playerPoints, int c1Points, int c2Points) {
+        return playerPoints >= 100 || c1Points >= 100 || c2Points >= 100;
+     }
+
 
 }
     
