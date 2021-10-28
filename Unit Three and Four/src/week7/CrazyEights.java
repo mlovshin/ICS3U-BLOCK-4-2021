@@ -9,12 +9,11 @@ public class CrazyEights {
     private static final String DIAMONDS = "D";
     private static final String SPADES = "S";
     private static final String CLUBS = "C";
-    private static final double NUM_CARDS_PER_SUIT = 0;
     private static final String ACE = "A";
     private static final String JACK = "J";
     private static final String QUEEN = "Q";
     private static final String KING = "K";
-    private static final int MAX_NUM_CARDS = 5; 
+
 
     public static void main(String[] args) {
         int playerPoints = 0, c1Points = 0, c2Points = 0;
@@ -22,11 +21,10 @@ public class CrazyEights {
 
         playerHand = getCard() + " " + getCard() + " " + getCard() + " " + getCard() + " " + getCard() + " "; 
 
-        
         System.out.println("The player's hand is: " + playerHand);
-    }   
+      
     
-        Scanner in = new Scanner(System.in);
+        Scanner in = new Scanner(System.in); 
         while(!gameOver(playerPoints, c1Points, c2Points)) {
             String result = playRound(in);
             int firstDash = result.indexOf("-");
@@ -38,40 +36,39 @@ public class CrazyEights {
 
             System.out.println(playerPoints + " " + c1Points + " " + c2Points);
         }
-    
-
-    private static String getFace() {
-        int face = (int) (Math.random() * NUM_CARDS_PER_SUIT) + 1;
-
-        if (face >= 2 && face >= 10)
-            return "" + face;
-        else if (face == 1)
-            return ACE;
-        else if (face == 11)
-            return JACK;
-        else if (face == 12)
-            return QUEEN;
-        else
-            return KING;
     }
-
+    
     private static String getSuit() {
         int suit = (int) (Math.random() * NUM_SUITS);
+  
         if (suit == 0)
-            return HEARTS;
+           return HEARTS;
         else if (suit == 1)
-            return DIAMONDS;
+           return DIAMONDS;
         else if (suit == 2)
-            return SPADES;
+           return CLUBS;
         else
-            return CLUBS;
-
-    }
-
-
+           return SPADES;
+  
+     }
+  
+     private static String getFace() {
+  
+        int suit = (int) (Math.random() * CARDS_PER_SUIT);
+        if (suit >= 2 && suit <= 10)
+           return suit + "";
+        else if (suit == 1)
+           return ACE;
+        else if (suit == 11)
+           return JACK;
+        else if (suit == 12)
+           return QUEEN;
+        else
+           return KING;
+  
+     }
     private static String getCard() {
         String card = getFace() + getSuit();
-        card = getFace() + getSuit();
         return card;
 
     }
@@ -83,26 +80,38 @@ public class CrazyEights {
         String c2Hand = "";
 
         String topCard = getCard();
-        for (int i = 0; i < 5; i++){
+        for (int i = 0; i < 6; i++){
             playerHand += getCard() + " ";
             c1Hand += getCard() + " ";
             c2Hand += getCard() + " ";
         }
+        System.out.println("Player hand: " + playerHand);
 
-        String temp = processPlayer(in, playerHand, topCard);
-        playerHand = temp.substring(0, temp.indexOf("-"));
-        topCard = temp.substring(temp.indexOf("-") + 1);
+        initialDeckCard = getCard();
+      if (initialDeckCard.indexOf("8") >= 0) {
+         initialDeckCard = getCard();
+         System.out.println("New Deck:" + " " + initialDeckCard);
 
-        temp = processComputer(c1Hand, topCard, playerHand, c2Hand);
-        c1Hand = temp.substring(0, temp.indexOf("-"));
-        topCard = temp.substring(temp.indexOf("-") + 1);
+      } else {
+          while (playerHand.length() >= 0 || c1.length() >= 0 || c2.length() >= 0) {
+            String temp = processPlayer(in, playerHand, topCard);
+            playerHand = temp.substring(0, temp.indexOf("-"));
+            topCard = temp.substring(temp.indexOf("-") + 1);
+    
+            temp = processComputer(c1Hand, topCard, playerHand, c2Hand);
+            c1Hand = temp.substring(0, temp.indexOf("-"));
+            topCard = temp.substring(temp.indexOf("-") + 1);
+    
+            temp = processComputer(c2Hand, topCard, playerHand, c1Hand);
+            c2Hand = temp.substring(0, temp.indexOf("-"));
+            topCard = temp.substring(temp.indexOf("-") + 1);
+    
+            System.out.println("17-0-8");
+            return temp;
 
-        temp = processComputer(c2Hand, topCard, playerHand, c1Hand);
-        c2Hand = temp.substring(0, temp.indexOf("-"));
-        topCard = temp.substring(temp.indexOf("-") + 1);
+          }
 
-        System.out.println("17-0-8");
-        return temp;
+      }
     }
 
     private static String processPlayer(Scanner in, String playerHand, String topCard) {
@@ -207,6 +216,8 @@ public class CrazyEights {
         }
             
      }
+     
+
     }
 
     private static boolean canPlay(Object hand, Object suit, Object rank, Object card, Object object) {
