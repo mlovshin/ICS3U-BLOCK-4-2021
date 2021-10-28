@@ -14,15 +14,20 @@ public class CrazyEights {
     private static final String JACK = "J";
     private static final String QUEEN = "Q";
     private static final String KING = "K";
+    private static final int MAX_NUM_CARDS = 5; 
 
     public static void main(String[] args) {
         int playerPoints = 0, c1Points = 0, c2Points = 0;
-        String playerHand = getCard() + " " + getCard() + " " + getCard() + " " + getCard() + " " + getCard();
-        System.out.println("The player's hand is: " + playerHand);
+        String playerHand = ""; 
 
+        playerHand = getCard() + " " + getCard() + " " + getCard() + " " + getCard() + " " + getCard() + " "; 
+
+        
+        System.out.println("The player's hand is: " + playerHand);
+    }   
     
         Scanner in = new Scanner(System.in);
-        while (!gameOver(playerPoints, c1Points, c2Points)) {
+        while(!gameOver(playerPoints, c1Points, c2Points)) {
             String result = playRound(in);
             int firstDash = result.indexOf("-");
             int secondDash = result.lastIndexOf("-");
@@ -33,7 +38,7 @@ public class CrazyEights {
 
             System.out.println(playerPoints + " " + c1Points + " " + c2Points);
         }
-    }
+    
 
     private static String getFace() {
         int face = (int) (Math.random() * NUM_CARDS_PER_SUIT) + 1;
@@ -65,8 +70,8 @@ public class CrazyEights {
 
 
     private static String getCard() {
-        String card = getFace() + " " + getSuit();
-        card = getFace() + " " + getSuit();
+        String card = getFace() + getSuit();
+        card = getFace() + getSuit();
         return card;
 
     }
@@ -124,7 +129,7 @@ public class CrazyEights {
     }
 
     private static String getCardsToDiscard(Scanner in, int numCardsToReplace, String playerHand) {
-        final String VALID_CARDS = "AS2S3S4S5S6S7S8S9S10SJSQSKSAC2C3C4C5C6C7C8C9C10CJCQCKCAD2D3D4D5D6D7D8D9D10DJDQDKDAH2H3H4H5H6H7H8H9H10HJHQHKH";
+        final String VALID_CARDS = "3";
         boolean validInput = false;
         String cards = "";
         while (!validInput) {
