@@ -137,7 +137,8 @@ public class CrazyEights {
         }
     }
 
-    private static String getCardsToDiscard(Scanner in, int numCardsToReplace, String playerHand) {
+    private static String getCardsToDiscard(Scanner in, int numCardsToReplace, String playerHand, String initialDeckCard) {
+        String initialDeckCards= "";
         final String VALID_CARDS = "3";
         boolean validInput = false;
         String cards = "";
@@ -168,9 +169,25 @@ public class CrazyEights {
               else
                  validInput = true;
            }
+           else {
+            int addedCards = 0; 
+            while(playerHand.indexOf(deckCardRank)==-1 && playerHand.indexOf(deckCardSuit)==-1 && playerHand.indexOf("8")==-1){
+               System.out.println("You cannot play. Press enter to draw a card.");
+               in.nextLine().toUpperCase();
+               playerHand+= " " + getCard();
+               System.out.println("Hand: " + playerHand);
+               System.out.println("Deck: " + initialDeckCard);
+               addedCards++;
+               if (addedCards==5){
+                  System.out.println("You turn skipped. Draw max 5 cards: ");
+                  return playerHand + " ";
+               } 
+            }
         }
+        
            
            }
+        }
 
     private static String processComputer(String c1Hand, String topCard, String playerHand, String c2Hand) {
         while (!canPlay(c1, getSuit(topCard), getRank(topCard)) && cardsDrawn < 5){
@@ -179,8 +196,10 @@ public class CrazyEights {
         }
         if (canPlay(c1, getSuit(topCard), getRank(topCard))){
             System.out.println("Which card would you like to play? ");
-            if (c1.equals(getSuit(topCard)) && !c1.equals(8)) 
-                System.out.println(c1);
+            if ((c1 - 2).equals(getRank(topCard) && c1.equals(10)))
+                System.out.println(c1 - 2);
+            else if ((c1 - 1).equals(getSuit(topCard)) && !c1.equals(10)) 
+                System.out.println(c1 - 1);
             else if(c1.equals(getRank(topCard) && !c1.equals(8)))
                 System.out.println(c1);
             else if(c1.equals(8)){
@@ -198,6 +217,10 @@ public class CrazyEights {
             cardsDrawn++;
             c2 += " " + getCard();
         
+        if ((c2 - 2).equals(getRank(topCard) && c1.equals(10)))
+            System.out.println(c2 - 2);
+        else if ((c2 - 1).equals(getSuit(topCard)) && !c1.equals(10)) 
+            System.out.println(c2 - 1);
         if (canPlay(c2, getSuit(topCard), getRank(topCard))){
             System.out.println("Which card would you like to play? ");
             if (c2.equals(getSuit(topCard)) && !c2.equals(8)) 
@@ -219,6 +242,38 @@ public class CrazyEights {
      
 
     }
+    private static int playerPoints(String playerHand) {
+        int points = 0; 
+      if(playerHand.indexOf(ACE) >= 0){
+         points+= 1;
+      }if (playerHand.indexOf("2") >= 0){
+         points+= 2; 
+      }if (playerHand.indexOf("3") >= 0){
+         points+= 3; 
+      }if (playerHand.indexOf("4") >= 0){
+         points+= 4; 
+      }if (playerHand.indexOf("5") >= 0){
+         points+= 5; 
+      }if (playerHand.indexOf("6") >= 0){
+         points+= 6; 
+      }if (playerHand.indexOf("7") >= 0){
+         points+= 7; 
+      }if (playerHand.indexOf("8") >= 0){
+         points+= 50; 
+      }if (playerHand.indexOf("9") >= 0){
+         points+= 9; 
+      }if (playerHand.indexOf("10") >= 0){
+         points+= 10; 
+      }if (playerHand.indexOf(JACK) >= 0){
+         points+= 10; 
+      }if (playerHand.indexOf(QUEEN) >= 0){
+         points+= 10; 
+      }if (playerHand.indexOf(KING) >= 0){
+         points+= 10; 
+   }
+   System.out.println(points);
+   return points;
+}
 
     private static boolean canPlay(Object hand, Object suit, Object rank, Object card, Object object) {
         return false;
