@@ -111,11 +111,9 @@ public class CrazyEights {
       
     }
 
-   private static String processPlayer(Scanner in, String playerHand, String topCard) {
+   private static String processPlayer(Scanner in, String playerHand, String topCard, int cardsDrawn) {
 
-      int cardsDrawn = 0;
-
-      while (!canPlay(playerHand, getSuit(topCard), getRank(topCard)) && cardsDrawn < 5) {
+      while (!canPlay(playerHand, getSuit(topCard), getRank(topCard)) && cardsDrawn <= 5) {
          cardsDrawn++;
          playerHand += " " + getCard();
       }
@@ -127,17 +125,19 @@ public class CrazyEights {
          else if (playerHand.indexOf("8") >= 0){
             System.out.println(playerHand);
             System.out.println("What suit would you like the next player to play? ");
-            String suit = getSuit(playerHand.length() - 1);
+            String suit = playerHand.substring((playerHand.length() - 1));
                playerHand = playerHand.replace(playerHand.substring(playerHand.indexOf("8"), playerHand.indexOf("8")+2), "");
                System.out.println("8"+suit);
-               topCard = "8"+suit;
+               topCard = "8"+ suit;
                return playerHand + "-" + topCard;
          } else {
             System.out.println("Invalid card. Please choose another card: ");
+         
 
             String card = getCardToDiscard();
          }
       }
+      return playerHand;
    }
 
    private static String getCardToDiscard() {
@@ -307,16 +307,17 @@ public class CrazyEights {
       return false;
    }
 
-   private static String getRank(String card) {
-      return card.getRank(card.substring(0, 1));
-   if (card.charAt(0, 2) == 10)
-      return card.substring(0, 2);
-      // returns the face of the card - get first character and return it - IF it is a 1 return
+   private static int getRank(String card) {
+      if (card.substring(0, 2).equals(10)){
+         return "10";
+   } else {
+      return card.substring(0, 1);
+   }
    }
 
    private static String getSuit(String card) {
-      return card.getSuit(card.charAt(card.length() - 1));
-      // returns the suit of the card - last character
+      return card.substring(card.length() - 1);
+
    }
 
    private static boolean gameOver(int playerPoints, int c1HandPoints, int c2HandPoints) {
