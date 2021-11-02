@@ -16,3 +16,4 @@ public class DieGame {
                 countPairs++;
         }
 }
+}
