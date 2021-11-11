@@ -89,8 +89,14 @@ public class DoubleArraySequence {
     **/
    // The new double array sequence is a copy of the DoubleArraySequence src.
    public DoubleArraySequence(DoubleArraySequence src) {
-     
+      data = new double[src.data.length];
+      manyItems = src.manyItems;
+      currentIndex = src.currentIndex;
 
+      for(int i = 0; i < data.length; i++){
+         data[i] = src.data[i];
+      }
+      //DONE
    }
 
    /**
@@ -111,6 +117,15 @@ public class DoubleArraySequence {
     *       the sequence to fail with an arithmetic overflow.
     **/
    public void addAfter(double d) {
+         //Add to make sure that the manyItems has enough to go through the loop
+      for(int i = manyItems; i > currentIndex + 1; i--) {
+         data[i] = data[i - 1];
+      }
+
+      data[currentIndex + 1] = d;
+      manyItems++;
+      currentIndex++;
+      
 
    }
 
@@ -152,6 +167,10 @@ public class DoubleArraySequence {
     *       an arithmetic overflow that will cause the sequence to fail.
     **/
    public void addAll(DoubleArraySequence addend) {
+      for (int i = 0; i < add.manyItems) {
+         addAfter(addEnd.data[i]);
+      }
+      
 
       
    }
@@ -194,7 +213,10 @@ public class DoubleArraySequence {
     *       sequence to fail.
     **/
    public static DoubleArraySequence catenation(DoubleArraySequence s1, DoubleArraySequence s2) {
-      return null;
+      DoubleArraySequence temp = new DoubleArraySequence(s1);
+      temp.addAll(s2);
+      return temp;
+      //DONE
 
    }
 
@@ -209,6 +231,11 @@ public class DoubleArraySequence {
     *                             int[minimumCapacity].
     **/
    public void ensureCapacity(int minimumCapacity) {
+      if (minimumCapacity > data.length) {
+         
+         
+         
+      }
 
    }
 
@@ -222,6 +249,7 @@ public class DoubleArraySequence {
     **/
    public int getCapacity() {
       return data.length;
+      //DONE
    }
 
    /**
@@ -234,7 +262,7 @@ public class DoubleArraySequence {
     *                                  so getCurrent may not be called.
     **/
    public double getCurrent() {
-     
+     return 0.0;
 
    }
 
