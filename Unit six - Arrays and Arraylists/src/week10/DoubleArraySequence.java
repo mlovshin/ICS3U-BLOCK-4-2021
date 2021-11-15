@@ -1,5 +1,7 @@
 package week10;
 
+import javax.lang.model.util.ElementScanner6;
+
 //75 IS PERFECT FOR THE PROJECT
 
 /******************************************************************************
@@ -117,7 +119,10 @@ public class DoubleArraySequence {
     *       the sequence to fail with an arithmetic overflow.
     **/
    public void addAfter(double d) {
-         //Add to make sure that the manyItems has enough to go through the loop
+         if (manyItems < data.length){
+            return;
+         } else if (manyItems > data.length){
+
       for(int i = manyItems; i > currentIndex + 1; i--) {
          data[i] = data[i - 1];
       }
@@ -126,8 +131,10 @@ public class DoubleArraySequence {
       manyItems++;
       currentIndex++;
       
-
+      }
    }
+   //DONE
+
 
    /**
     * Add a new element to this sequence, before the current element. If the new
@@ -146,10 +153,18 @@ public class DoubleArraySequence {
     * @note An attempt to increase the capacity beyond Integer.MAX_VALUE will cause
     *       the sequence to fail with an arithmetic overflow.
     **/
-   public void addBefore(double element) {
+   public void addBefore(double element, int manyItems) {
+      
+      for (int i = manyItems; i > currentIndex + 1; i--) {
+         data[i] = data[i - 1];
+         }
+         data[currentIndex] = element;
+         manyItems++;
+      }
+      //DONE
 
       
-   }
+   
 
    /**
     * Place the contents of another sequence at the end of this sequence.
@@ -262,9 +277,13 @@ public class DoubleArraySequence {
     *                                  so getCurrent may not be called.
     **/
    public double getCurrent() {
-     return 0.0;
-
+     if (isCurrent() == true) {
+        return data[currentIndex];
+     }else{
+      throw new IllegalStateException("There is no current element. ");
+      }
    }
+   //DONE
 
    /**
     * Accessor method to determine whether this sequence has a specified current
@@ -293,6 +312,9 @@ public class DoubleArraySequence {
     *                                  so removeCurrent may not be called.
     **/
    public void removeCurrent() {
+      if ( isCurrent() == true) {
+         int[] sqeuence = new int[manyItems - current] //Ask if current element is in the first digit in the squence
+      }
 
    }
 
@@ -331,8 +353,12 @@ public class DoubleArraySequence {
     *                             capacity.
     **/
    public void trimToSize() {
-
+      if (data.length != manyItems) {
+         double[] trimArray = new double[manyItems];
+         data = trimArray;
+      }
    }
+   //DONE
 
    public int getCurrentIndex() {
       return currentIndex;
