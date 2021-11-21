@@ -1,6 +1,6 @@
 package week10;
 
-import javax.lang.model.util.ElementScanner6;
+
 
 //75 IS PERFECT FOR THE PROJECT
 
@@ -78,7 +78,7 @@ public class DoubleArraySequence {
       manyItems = 0;
       currentIndex = 0;
       data = new double[initialCapacity];
-      //DONEE
+      //DONE
 
    }
 
@@ -120,17 +120,36 @@ public class DoubleArraySequence {
     **/
    public void addAfter(double d) {
          if (manyItems < data.length){
-            return;
-         } else if (manyItems > data.length){
-
-      for(int i = manyItems; i > currentIndex + 1; i--) {
-         data[i] = data[i - 1];
+      if (isCurrent()){
+         for(int i = manyItems; i > currentIndex + 1; i--) {
+            data[i] = data[i - 1];
+         }
+         data[currentIndex + 1] = d;
+         manyItems++;
+         currentIndex++;
+      } else if(!isCurrent()){
+         data[manyItems] = d;
+         currentIndex = manyItems;
+         manyItems++;
+   
+      } else {
+         ensureCapacity(manyItems + 1);
       }
-
-      data[currentIndex + 1] = d;
-      manyItems++;
-      currentIndex++;
       
+      } else if (manyItems + 1 > data.length){
+         if (isCurrent()){
+            data[data.length + 1] = manyItems;
+            for (int i = manyItems; i > currentIndex; i--) {
+               data[i] = data[i-1];
+            }
+            data[currentIndex + 1] = d;
+            currentIndex++;
+            manyItems++;
+         } else if(!isCurrent()){
+            data[manyItems] = d;
+            manyItems++;
+            currentIndex = manyItems;
+         }
       }
    }
    //DONE
@@ -153,18 +172,35 @@ public class DoubleArraySequence {
     * @note An attempt to increase the capacity beyond Integer.MAX_VALUE will cause
     *       the sequence to fail with an arithmetic overflow.
     **/
-   public void addBefore(double element, int manyItems) {
-      
-      for (int i = manyItems; i > currentIndex + 1; i--) {
-         data[i] = data[i - 1];
+   public void addBefore(double element) {
+      if (manyItems + 1 >  data.length) {
+         for (int i = manyItems; i > 0; i++) {
+            data[i] = data[i - 1]; 
          }
-         data[currentIndex] = element;
-         manyItems++;
-      }
-      //DONE
 
-      
-   
+         data[0] = element;
+         currentIndex = 0;
+         manyItems++;
+
+      } else if (manyItems < data.length){
+         if(isCurrent()){
+            for (int i = manyItems; i > currentIndex; i--) {
+               data[currentIndex] = element;
+               manyItems++;
+            }
+         } else if(!isCurrent()){
+            for (int i = manyItems; i > 0; i--) {
+               data[i] = data[i - 1];
+            }
+               data[0] = element;
+               currentIndex = 0;
+               manyItems++;
+
+            }
+         }
+      }
+
+   //DONE
 
    /**
     * Place the contents of another sequence at the end of this sequence.
@@ -182,13 +218,19 @@ public class DoubleArraySequence {
     *       an arithmetic overflow that will cause the sequence to fail.
     **/
    public void addAll(DoubleArraySequence addend) {
-      for (int i = 0; i < add.manyItems) {
-         addAfter(addEnd.data[i]);
+      if (addend == null) {
+         throw new NullPointerException("addend can't be null");
+      }
+
+      ensureCapacity(manyItems + addend.manyItems);
+         for (int i = 0; i < manyItems; i++) {
+            data[i] = data[i];
+         }
+         manyItems += addend.manyItems;
+      
       }
       
-
-      
-   }
+   //DONE
 
    /**
     * Move forward, so that the current element is now the next element in this
@@ -246,13 +288,19 @@ public class DoubleArraySequence {
     *                             int[minimumCapacity].
     **/
    public void ensureCapacity(int minimumCapacity) {
-      if (minimumCapacity > data.length) {
-         
-         
+      if (minimumCapacity < data.length) {
+         double[] temp = new double[minimumCapacity];
+
+         for (int index = 0; index < data.length; index++) {
+            temp[index] = data[index];         //changes the value of the first current index, when the temp variable changes in the loop, the index of data also adds by one
+            
+         }
+         data = temp;
          
       }
 
    }
+   //DONE
 
    /**
     * Accessor method to get the current capacity of this sequence. The add method
@@ -312,9 +360,22 @@ public class DoubleArraySequence {
     *                                  so removeCurrent may not be called.
     **/
    public void removeCurrent() {
-      if ( isCurrent() == true) {
-         int[] sqeuence = new int[manyItems - current] //Ask if current element is in the first digit in the squence
+      if(isCurrent() == false){
+         throw new IllegalStateException("No current."); 
       }
+
+      if(currentIndex == manyItems){
+         throw new IllegalStateException("No current"); 
+      }
+
+      if ( isCurrent() == true) {
+         for (int i = 0; i < manyItems - 1; i++){
+            data[i] = data[i + 1];
+            
+         }   
+         manyItems--;       
+      }
+      //DONE
 
    }
 
@@ -355,6 +416,11 @@ public class DoubleArraySequence {
    public void trimToSize() {
       if (data.length != manyItems) {
          double[] trimArray = new double[manyItems];
+         
+         for (int i = 0; i < manyItems; i++) {
+            trimArray[i] = data[i];
+            
+         }
          data = trimArray;
       }
    }
